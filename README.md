@@ -42,8 +42,8 @@ The following books should be helpful, but none are required if you don't want t
 A very preliminary schedule is below to give a taste of the scope of what we're hoping to cover. 
 
 
-| Date |  Topic  |  Materials  | Reading |
-|------|---------|-------------|---------|
+| Date |  Topic  |  
+|------|---------|
 | Jan 28 | Intro & one-time-pads | 
 | Feb 2  | Block ciphers |  |
 | Feb 4 |  Block ciphers from block ciphers |  |
