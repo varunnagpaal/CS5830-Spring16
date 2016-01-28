@@ -5,12 +5,14 @@ Welcome to CS 5830, Cryptography. We will be studying cryptography and how to us
 A key aspect of the course will be implementing cryptographic schemes, as well as showing how to break poorly designed or implemented schemes. A final project for the course will consist of some non-trivial cryptographic feature being implemented in support of a larger project (e.g., a startup project). 
 
 Instructor: Tom Ristenpart (https://rist.tech.cornell.edu)
+TA: Rahul Chatterjee (https://www.cs.cornell.edu/~rahul/)
 
 
 ### Pre-requisites
 
 Students should have programming experience (we will be focusing on Python),
 understand basic probability, know binary representations (ASCII), operations on bit strings (XOR), have some background on computer networking, file systems, etc. If in doubt shoot the instructor an email.
+
 
 
 ### Requirements
