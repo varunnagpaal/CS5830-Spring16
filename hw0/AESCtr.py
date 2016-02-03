@@ -41,7 +41,8 @@ class AESCtr:
     return ctx
 
   def decrypt(self, ctx):
-    """ This function decrypts a ciphertext encrypted using AES-CTR mode.  """ 
+    """This function decrypts a ciphertext encrypted using AES-CTR mode.
+    """ 
     data = ""
 
     # TODO: Fill in this function.
