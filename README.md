@@ -41,7 +41,10 @@ The following books should be helpful, but none are required if you don't want t
 
 ## Lecture schedule
 
-A very preliminary schedule is below to give a taste of the scope of what we're hoping to cover. 
+A very preliminary schedule is below to give a taste of the scope of
+what we're hoping to cover.  Homeworks will be due on the due date by
+11:59:59pm EST. You can use in total 3 late days throughout the semeseter. 
+
 
 
 | Date |  Topic  |  Note |
