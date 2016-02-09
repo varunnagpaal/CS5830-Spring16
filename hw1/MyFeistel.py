@@ -33,7 +33,7 @@ class MyFeistel:
             if i==0: continue
             self._round_keys[i] = self.SHA256hash(self._round_keys[i-1])
 
-    def SHA256hash(self, data):
+    def _SHA256hash(self, data):
         h = hashes.Hash(hashes.SHA256(), self._backend)
         h.update(data)
         return h.finalize()
@@ -51,24 +51,24 @@ class MyFeistel:
 
     def decrypt(self, ctx):
         assert len(data)%2 == 0, "Supports only balanced feistel at "\
-            "this moment. So provide even length messages."
+            "this moment. So provide even length ciphertext."
         #TODO - Fill in
         pass
 
     def _prf(self, key, data):
-        """Set up round function F
+        """Set up secure round function F
         """
         # TODO - set up round funciton using AES 
         pass
 
     def _feistel_round_enc(self, data):
-        """This function 1 round of Fiestel encryption block.
+        """This function implements one round of Fiestel encryption block.
         """
         # TODO - Implement this function 
         pass
 
     def _feistel_round_dec(self, data):
-        """This function 1 round of Fiestel decryption block.
+        """This function implements one round of Fiestel decryption block.
         """
         # TODO - Implement this function 
         pass
