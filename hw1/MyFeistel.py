@@ -38,10 +38,6 @@ class MyFeistel:
         h.update(data)
         return h.finalize()
 
-    @classmethod
-    def generate_key(cls):
-        return base64.urlsafe_b64encode(os.urandom(32))
-
     def encrypt(self, data):  # TODO: add tweak
         assert len(data)%2 == 0, "Supports only balanced feistel at "\
             "this moment. So provide even length messages."
