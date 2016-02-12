@@ -38,7 +38,7 @@ class MyFeistel:
         h.update(data)
         return h.finalize()
 
-    def encrypt(self, data):  # TODO: add tweak
+    def encrypt(self, data):
         assert len(data)%2 == 0, "Supports only balanced feistel at "\
             "this moment. So provide even length messages."
 
