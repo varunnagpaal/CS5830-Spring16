@@ -20,7 +20,7 @@ class MyFeistel:
             backend = default_backend()
 
         key = base64.urlsafe_b64decode(key)
-        if len(key) != 32:
+        if len(key) != 16:
             raise ValueError(
                 "Key must be 16 url-safe base64-encoded bytes. Got: {} ({})".format(key, len(key))
             )
@@ -31,7 +31,7 @@ class MyFeistel:
                             for _ in xrange(self._num_rounds)]
         for i  in xrange(self._num_rounds):
             if i==0: continue
-            self._round_keys[i] = self.SHA256hash(self._round_keys[i-1])
+            self._round_keys[i] = self._SHA256hash(self._round_keys[i-1])
 
     def _SHA256hash(self, data):
         h = hashes.Hash(hashes.SHA256(), self._backend)
@@ -43,31 +43,31 @@ class MyFeistel:
             "this moment. So provide even length messages."
 
         # TODO - Fill in
-        pass
+        return data
 
     def decrypt(self, ctx):
-        assert len(data)%2 == 0, "Supports only balanced feistel at "\
+        assert len(ctx)%2 == 0, "Supports only balanced feistel at "\
             "this moment. So provide even length ciphertext."
         #TODO - Fill in
-        pass
+        return ctx
 
     def _prf(self, key, data):
         """Set up secure round function F
         """
         # TODO - set up round funciton using AES 
-        pass
+        return data
 
     def _feistel_round_enc(self, data):
         """This function implements one round of Fiestel encryption block.
         """
-        # TODO - Implement this function 
-        pass
-
+        # TODO - Implement this function
+        return data
+    
     def _feistel_round_dec(self, data):
         """This function implements one round of Fiestel decryption block.
         """
         # TODO - Implement this function 
-        pass
+        return data
 
 class LengthPreservingCipher(object):
     def __init__(self, key, length=40):
@@ -76,10 +76,10 @@ class LengthPreservingCipher(object):
 
     def encrypt(self, data):
         # TODO
-        pass
+        return data
 
     def decrypt(self, data):
         # TODO
-        pass
+        return data
 
     # TODO - add other functions if required
