@@ -25,7 +25,7 @@ class MyFeistel:
                 "Key must be 16 url-safe base64-encoded bytes. Got: {} ({})".format(key, len(key))
             )
         self._num_rounds = num_rounds
-        self._encryption_key = key[16:]
+        self._encryption_key = key
         self._backend = backend
         self._round_keys = [self._encryption_key \
                             for _ in xrange(self._num_rounds)]
