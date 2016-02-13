@@ -24,6 +24,6 @@ class TestLengthPreservingCipher:
 
         # decrypt(encrypt(msg)) == msg
         for i in xrange(20):
-            msg = os.urandom(40)
+            msg = os.urandom(5)
             assert feistel.decrypt(feistel.encrypt(msg)) == msg
 
