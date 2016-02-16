@@ -20,10 +20,10 @@ class TestMyFeistel:
 class TestLengthPreservingCipher:
     def test_Functionality(self):
         key = base64.urlsafe_b64encode(os.urandom(16))
-        feistel = MyFeistel(key, 10)
+        lpc = LengthPreservingCipher(key, 10)
 
         # decrypt(encrypt(msg)) == msg
         for i in xrange(20):
             msg = os.urandom(5)
-            assert feistel.decrypt(feistel.encrypt(msg)) == msg
+            assert lpc.decrypt(lpc.encrypt(msg)) == msg
 
