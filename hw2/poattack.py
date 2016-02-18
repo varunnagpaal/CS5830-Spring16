@@ -1,4 +1,4 @@
-from paddingoracle import PaddingOracle, xor
+from paddingoracle import PaddingOracle, PaddingOracleServer, xor
 
 def split_into_blocks(msg, l):
     while msg:
@@ -50,3 +50,11 @@ def test_po_attack():
         msg = po_attack(po, ctx)
         assert po.test(msg), "Failed 'po_attack' for msg of length={}".format(i)
 
+def test_poserver_attack():
+    # You may want to put some print statement in the code to see the
+    # progress. This attack might 10.218.176.10take upto an hour to complete. 
+
+    po = PaddingOracleServer()
+    ctx = po.ciphertext()
+    msg = po_attack(po, ctx)
+    print msg
