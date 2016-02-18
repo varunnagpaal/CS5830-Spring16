@@ -81,7 +81,7 @@ class PaddingOracleServer(object):
 
     @property
     def block_length(self):
-        return 16 # Writing constants is bad habbit. fix it later!
+        return ciphers.algorithms.AES.block_size/8
 
     def decrypt(self, ctx):
         dec_url = url + "decrypt/{}".format(base64.urlsafe_b64encode(ctx))
