@@ -61,8 +61,8 @@ what we're hoping to cover.  Homeworks will be due on the due date by
 | Mar 1 | Project proposal discussion | HW2 due. HW3 (AEAD) released. |
 | Mar 3 | Hash functions and their applications | |
 | Mar 8 | Password handling | |
-| Mar 10 | RSA | |
-| Mar 15 | Public-key encryption | HW3 due. HW4 (password based AEAD) released. |
+| Mar 10 | RSA |HW3 due. HW4 (password based AEAD) released. |
+| Mar 15 | Public-key encryption |  |
 | Mar 17 | Key transport using PKE | |
 | Mar 22 | Diffie-Hellman | HW4 due. |
 | Mar 29 | No lecture (Spring break) |  Enjoy the break and think about the project. |
