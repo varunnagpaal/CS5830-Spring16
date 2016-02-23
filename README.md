@@ -55,11 +55,11 @@ what we're hoping to cover.  Homeworks will be due on the due date by
 | Feb 9 | Usage of crypto discussion | HW0 due. HW1 (length preserving cipher)  released. |
 | Feb 11 | Guest lecture TBA | |
 | Feb 16 | No lecture  (February break) | |
-| Feb 18 | Insecure symmetric encryption | HW0 due. HW1 (length preserving cipher)  released. |
-| Feb 23 | PRFs & message authentication | HW1 due. HW2 (padding oracle attack) released. |
+| Feb 18 | Insecure symmetric encryption |  HW1 due. HW2 (padding oracle attack) released. |
+| Feb 23 | PRFs & message authentication |  |
 | Feb 25 | Authenticated encryption | |
-| Mar 1 | Project proposal discussion | |
-| Mar 3 | Hash functions and their applications | HW2 due. HW3 (AEAD) released. |
+| Mar 1 | Project proposal discussion | HW2 due. HW3 (AEAD) released. |
+| Mar 3 | Hash functions and their applications | |
 | Mar 8 | Password handling | |
 | Mar 10 | RSA | |
 | Mar 15 | Public-key encryption | HW3 due. HW4 (password based AEAD) released. |
