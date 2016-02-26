@@ -139,27 +139,6 @@ class LengthPreservingCipher(MyFeistel):
         self._length = 5
         self._round = 10
         self._cipher = MyFeistel(key, 10)
-
-    def _apply_feistel(self, data, ischop):
-        """
-        @data: data to encrypt. Expects that the data is already padded.
-        @ischop: is the length of the padding for both L and R
-        """
-        ctx = data
-        n = len(ctx)
-        for i_round in xrange(self._round):
-            ctx = self._cipher.encrypt(ctx).encode('hex')
-            L, R = ctx[:n], ctx[n:]  # Note there is a padding of the data,
-                                     # which we may want to remove or replace
-                                     # with zeros.
-            if ischop:
-                if i_round==self._round-1: # Last round
-                    L, R  = L[1:], R[1:]
-                else:
-                    L, R = '0' + L[1:], '0' + R[1:] 
-            ctx = (L+R).decode('hex')
-        return ctx  # Returns unpadded cipher text after applying the Feistel
-                    # rounds
     
     def encrypt(self, data):
         assert len(data) == self._length, "The length of the data ({}) is incorrect. Should be {}."\
