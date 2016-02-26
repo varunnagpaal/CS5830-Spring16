@@ -2,8 +2,9 @@
 # Trying to implement a length preserving Encryption function.
 # 
 
-from cryptography.hazmat.primitives import hashes, padding
+from cryptography.hazmat.primitives import hashes, padding, ciphers, hmac
 from cryptography.hazmat.backends import default_backend
+
 import base64
 import binascii
 
@@ -14,10 +15,12 @@ def xor(a,b):
     assert len(a) == len(b), "Lengths of two strings are not same. a = {}, b = {}".format(len(a), len(b))
     return ''.join(chr(ord(ai)^ord(bi)) for ai,bi in zip(a,b))
 
+
 class MyFeistel:
     def __init__(self, key, num_rounds, backend=None):
         if backend is None:
             backend = default_backend()
+
 
         key = base64.urlsafe_b64decode(key)
         if len(key) != 16:
@@ -31,66 +34,68 @@ class MyFeistel:
                             for _ in xrange(self._num_rounds)]
         for i  in xrange(self._num_rounds):
             if i==0: continue
-            self._round_keys[i] = self._SHA256hash(self._round_keys[i-1])
+            self._round_keys[i] = self.SHA256hmac('', self._round_keys[i-1])
 
-    def _SHA256hash(self, data):
-        h = hashes.Hash(hashes.SHA256(), self._backend)
+    def SHA256hmac(self, key, data):
+        # h = hashes.Hash(hashes.SHA256(), self._backend)
+        h = hmac.HMAC(key, hashes.SHA256(), backend=self._backend)
         h.update(data)
         return h.finalize()
 
-    ################################################################################
-    ## Below are some free utitlity functions. How/where to use them is up to you. ###
+    @classmethod
+    def generate_key(cls):
+        return base64.urlsafe_b64encode(os.urandom(32))
+
+    def encrypt(self, data):  # TODO: add tweak
+        return self._feistel_round_enc(data)
+
+    def decrypt(self, ctx):
+        return self._feistel_round_dec(ctx)
 
     def _pad_string(self, data):
-        """Pad @data if required, returns a tuple containing a boolean
-        (whether it is padded), and the padded string.
-
+        """pad data if required, returns both a boolean (whether it is padded), 
+        and the padded string
         """
         h_data = data.encode('hex')
         n = len(data)
         if n%2 == 0:
             return False, data
         l,r = h_data[:n], h_data[n:]
-        l = '0' + l # I am padding at the beginning, you can do it in
-                    # the end as well. Remember to update the unpad
-                    # function accordingly.
+        l = '0' + l
         r = '0' + r
         return True, (l+r).decode('hex')
 
-    def _unpad_string(self, is_padded, padded_str): # Not tested!
-        if not is_padded:
-            return padded_str
-        n = len(padded_str)
-        assert n%2 == 0, "Padded string must of even length. You are "\
-            "probably sending something wrong. Note it contains both "\
-            "left and right part. Otherwise, just do this unpadding in "\
-            "your function"
-        l, r = padded_str[:n/2], padded_str[n/2:]
-        return (l.encode('hex')[1:] + r.encode('hex')[1:]).decode('hex')
-
     def _prf(self, key, data):
-        """If you haven't figured this out already, this function instanctiate
-        AES in CBC mode with static IV, to act as a round function,
-        a.k.a. pseudorandom function generator.
-        
-        WARNING: I am leaving an intentional bug in the
-        function. Figure that out, if you want to use this function.
+        length_padded_data = "%d%s" % (len(data), data)
+        block_size = ciphers.algorithms.AES.block_size
+        padder = padding.PKCS7(block_size).padder()
+        iv = '0'*(block_size/8) # Static IV, because we don't want it to be random.
 
-        """
-        padder = padding.PKCS7(ciphers.algorithms.AES.block_size).padder()
-        padded_data = padder.update(data) + padder.finalize()
+        padded_data = padder.update(length_padded_data) + padder.finalize()
         encryptor = ciphers.Cipher(ciphers.algorithms.AES(self._encryption_key),
                                    ciphers.modes.CBC(iv),
                                    self._backend).encryptor()
-        return  (encryptor.update(padded_data) + encryptor.finalize())[:len(data)]
-    
-    def _prf_hash(self, key, data):
-        """Just FYI, you can also instantiate round function ushig SHA256 hash
-        function. You don't have to use this function.
-        """
-        out = self.SHA256hash(data+key) # TODO: SecCheck
+        
+        # Last block of the ciphertext is the CBC-MAC of the
+        # message. Now we shall use this as a key to create a PRF
+        new_k = (encryptor.update(padded_data) +
+                 encryptor.finalize())[-(block_size/8):]
+        ret = ''
+        dummy_data = iv  # same as 0^16
+        while len(ret)<len(data):
+            encryptor = ciphers.Cipher(ciphers.algorithms.AES(new_k),
+                                       ciphers.modes.ECB(),
+                                       self._backend).encryptor()
+            # Comput E(k, iv), E(k, E(k, iv)) etc.
+            # I don't think we have to prepend with 0, 1, 2 etc, but need to check.
+            dummy_data = (encryptor.update(dummy_data) + encryptor.finalize())
+            ret += dummy_data
+        return ret[:len(data)]
+
+    def _prf_hmac(self, key, data):
+        out = self.SHA256hmac(key, data) # TODO: SecCheck
         while len(out)<len(data):
-            out += self.SHA256hash(out+key)
+            out += self.SHA256hmac(key, out)
         return out[:len(data)]
 
     def _clear_most_significant_four_bits(self, s):
@@ -102,43 +107,68 @@ class MyFeistel:
             "and I only work with 1 byte"
         return ('0' + s.encode('hex')[1]).decode('hex')
 
-    ## END-OF-FREE-LUNCH
-    ################################################################################
-    
-    def encrypt(self, data):
-        # TODO - Fill in
-        return data
-
-    def decrypt(self, ctx):
-        #TODO - Fill in
-        return ctx
-
     def _feistel_round_enc(self, data):
-        """This function implements one round of Fiestel encryption block.
-        """
-        # TODO - Implement this function
-        return data
-    
+        is_padded, padded_data = self._pad_string(data)  # Odd length message, we have to pad, and remove it later
+        n = len(padded_data)
+        L, R = padded_data[:n/2], padded_data[n/2:]
+        for k in self._round_keys:
+            L, R = R, xor(L, self._prf(k, R))
+            if is_padded: # Why only R, because first four bits of L is already cleard.  
+                R = self._clear_most_significant_four_bits(R[0])+R[1:]
+        if is_padded: # As we padded the data, we have to remove the padding
+            return (L.encode('hex')[1:] + R.encode('hex')[1:]).decode('hex')
+        else:
+            return L + R
+
     def _feistel_round_dec(self, data):
-        """This function implements one round of Fiestel decryption block.
-        """
-        # TODO - Implement this function 
-        return data
+        is_padded, padded_data = self._pad_string(data)  # Odd length message, we have to pad, and remove it later
+        n = len(padded_data)
+        L, R = padded_data[:n/2], padded_data[n/2:]
+        for k in self._round_keys[::-1]:
+            L, R = xor(R, self._prf(k, L)), L
+            if is_padded: # Why only R, because first four bits of L is already cleard.  
+                L = self._clear_most_significant_four_bits(L[0])+L[1:]
+        if is_padded: # As we padded the data, we have to remove the padding
+            return (L.encode('hex')[1:] + R.encode('hex')[1:]).decode('hex')
+        else:
+            return L + R
 
-class LengthPreservingCipher(object):
+        
+class LengthPreservingCipher(MyFeistel):
     def __init__(self, key, length=5):
-        self._length = length
-        self._num_rounds = 10 # Hard code this. Don't leave this kind
-                              # of parameter upto the developers.
+        self._length = 5
+        self._round = 10
+        self._cipher = MyFeistel(key, 10)
 
-        # TODO
-
+    def _apply_feistel(self, data, ischop):
+        """
+        @data: data to encrypt. Expects that the data is already padded.
+        @ischop: is the length of the padding for both L and R
+        """
+        ctx = data
+        n = len(ctx)
+        for i_round in xrange(self._round):
+            ctx = self._cipher.encrypt(ctx).encode('hex')
+            L, R = ctx[:n], ctx[n:]  # Note there is a padding of the data,
+                                     # which we may want to remove or replace
+                                     # with zeros.
+            if ischop:
+                if i_round==self._round-1: # Last round
+                    L, R  = L[1:], R[1:]
+                else:
+                    L, R = '0' + L[1:], '0' + R[1:] 
+            ctx = (L+R).decode('hex')
+        return ctx  # Returns unpadded cipher text after applying the Feistel
+                    # rounds
+    
     def encrypt(self, data):
-        # TODO
-        return data
+        assert len(data) == self._length, "The length of the data ({}) is incorrect. Should be {}."\
+                                .format(len(data), self._length)
+        return self._cipher.encrypt(data)
+        
+    def decrypt(self, ctx):
+        assert len(ctx) == self._length, "The length of the data ({}) is incorrect. Should be {}."\
+                                .format(len(ctx), self._length)
+        return self._cipher.decrypt(ctx)
 
-    def decrypt(self, data):
-        # TODO
-        return data
 
-    # TODO - add other functions if required
