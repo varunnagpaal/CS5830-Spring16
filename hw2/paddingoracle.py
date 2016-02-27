@@ -66,3 +66,37 @@ class PaddingOracle(object):
 
 
 
+################################################################################
+## The following code provides API to access padding oracle server.
+################################################################################
+
+from urllib2 import urlopen
+import json
+
+url = 'https://paddingoracle.herokuapp.com/'
+
+class PaddingOracleServer(object):
+    def __init__(self, msg_len=0):
+        pass
+
+    @property
+    def block_length(self):
+        return ciphers.algorithms.AES.block_size/8
+
+    def decrypt(self, ctx):
+        dec_url = url + "decrypt/{}".format(base64.urlsafe_b64encode(ctx))
+        ret = json.load(urlopen(dec_url))
+        return ret['return'] == 0
+
+    def ciphertext(self):
+        ctx_url = url + "ctx"
+        ret = json.load(urlopen(ctx_url))
+        return base64.urlsafe_b64decode(str(ret['ctx']))
+
+    def test(self, msg):
+        test_url = url + "test/{}".format(base64.urlsafe_b64encode(msg))
+        ret = json.load(urlopen(test_url))
+        return ret['return'] == 0
+
+    def setup(self):
+        return self.ciphertext()

@@ -1,11 +1,11 @@
-from paddingoracle import PaddingOracle, xor
+from paddingoracle import PaddingOracle, PaddingOracleServer, xor
 
 def split_into_blocks(msg, l):
     while msg:
         yield msg[:l]
         msg = msg[l:]
     
-def poattack_2blocks(po, ctx):
+def po_attack_2blocks(po, ctx):
     """Given two blocks of cipher texts, it can recover the first block of
     the message.
     @po: an instance of padding oracle. 
@@ -19,7 +19,7 @@ def poattack_2blocks(po, ctx):
     # TODO: Implement padding oracle attack for 2 blocks of messages.
     return msg
 
-def poattack(po, ctx):
+def po_attack(po, ctx):
     """
     Padding oracle attack that can decrpyt any arbitrary length messags.
     @po: an instance of padding oracle. 
@@ -36,17 +36,25 @@ def poattack(po, ctx):
 ##### Tests
 ################################################################################
 
-def test_poattack_2blocks():
+def test_po_attack_2blocks():
     for i in xrange(16):
         po = PaddingOracle(msg_len=i)
         ctx = po.setup()
-        msg = poattack(po, ctx)
-        assert po.test(msg), "Failed 'poattack_2blocks' for msg of length={}".format(i)
+        msg = po_attack(po, ctx)
+        assert po.test(msg), "Failed 'po_attack_2blocks' for msg of length={}".format(i)
 
-def test_poattack():
+def test_po_attack():
     for i in xrange(1000):
         po = PaddingOracle(msg_len=i)
         ctx = po.setup()
-        msg = poattack(po, ctx)
-        assert po.test(msg), "Failed 'poattack' for msg of length={}".format(i)
+        msg = po_attack(po, ctx)
+        assert po.test(msg), "Failed 'po_attack' for msg of length={}".format(i)
 
+def test_poserver_attack():
+    # You may want to put some print statement in the code to see the
+    # progress. This attack might 10.218.176.10take upto an hour to complete. 
+
+    po = PaddingOracleServer()
+    ctx = po.ciphertext()
+    msg = po_attack(po, ctx)
+    print msg
