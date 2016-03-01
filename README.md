@@ -58,9 +58,9 @@ what we're hoping to cover.  Homeworks will be due on the due date by
 | Feb 18 | Insecure symmetric encryption |  HW1 due. HW2 (padding oracle attack) released. |
 | Feb 23 | PRFs & message authentication |  |
 | Feb 25 | Authenticated encryption | |
-| Mar 1 | Project proposal discussion | HW2 due. HW3 (AEAD) released. |
-| Mar 3 | Hash functions and their applications | |
-| Mar 8 | Password handling | |
+| Mar 1 | AEAD & hash functions |  |
+| Mar 3 | Password handling | HW2 due. HW3 (AEAD) released. |
+| Mar 8 | Project proposal discussion  | |
 | Mar 10 | RSA |HW3 due. HW4 (password based AEAD) released. |
 | Mar 15 | Public-key encryption |  |
 | Mar 17 | Key transport using PKE | |
