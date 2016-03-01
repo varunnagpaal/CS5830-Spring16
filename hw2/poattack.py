@@ -37,10 +37,10 @@ def po_attack(po, ctx):
 ################################################################################
 
 def test_po_attack_2blocks():
-    for i in xrange(16):
+    for i in xrange(1, 16):
         po = PaddingOracle(msg_len=i)
         ctx = po.setup()
-        msg = po_attack(po, ctx)
+        msg = po_attack_2blocks(po, ctx)
         assert po.test(msg), "Failed 'po_attack_2blocks' for msg of length={}".format(i)
 
 def test_po_attack():
