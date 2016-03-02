@@ -77,11 +77,13 @@ url = 'https://paddingoracle.herokuapp.com/'
 
 class PaddingOracleServer(object):
     def __init__(self, msg_len=0):
+        self._backend = default_backend()
+        self._block_size_bytes = ciphers.algorithms.AES.block_size/8
         pass
 
     @property
     def block_length(self):
-        return ciphers.algorithms.AES.block_size/8
+        return self._block_size_bytes
 
     def decrypt(self, ctx):
         dec_url = url + "decrypt/{}".format(base64.urlsafe_b64encode(ctx))
