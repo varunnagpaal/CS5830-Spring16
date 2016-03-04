@@ -61,20 +61,21 @@ what we're hoping to cover.  Homeworks will be due on the due date by
 | Mar 1 | AEAD & hash functions |  |
 | Mar 3 | Password handling | HW2 due. HW3 (AEAD) released. |
 | Mar 8 | Project proposal discussion  | |
-| Mar 10 | RSA |HW3 due. HW4 (password based AEAD) released. |
-| Mar 15 | Public-key encryption |  |
-| Mar 17 | Key transport using PKE | |
-| Mar 22 | Diffie-Hellman | HW4 due. |
+| Mar 10 | TLS & TLS record layer | |
+| Mar 15 | Public-key encryption & key transport |  |
+| Mar 17 | RSA | |
+| Mar 22 | Key exchange & Diffie-Hellman | HW3 due. HW4 released (TLS setup) |
+| Mar 24 | Digital signatures |   |
 | Mar 29 | No lecture (Spring break) |  Enjoy the break and think about the project. |
 | Mar 31 | No lecture (Spring break) | |
-| Apr 5 | Digital signatures |  |
-| Apr 7 | In-class project check-in | HW5 (RSA) released. |
-| Apr 12 | PKI & authenticated-key exchange | |
-| Apr 14 | Building a secure channel | |
-| Apr 19 | TLS | HW5 due. HW6 (TLS setup) released. |
-| Apr 21 | TLS attacks | |
-| Apr 26 | Random number generation | |
-| Apr 28 | Crypto backdoors | HW6 due. |
+| Apr 5 | In-class project check-in | HW4 due. HW5 (Public-key encryption) released. |
+| Apr 7 | PKI & authenticated-key exchange | |
+| Apr 12 | Attacks on TLS | |
+| Apr 14 | Attacks on TLS 2 | |
+| Apr 19 | GPG | HW5 due. HW6 (TBA) released. |
+| Apr 21 | Random number generation | |
+| Apr 26 | Crypto backdoors | |
+| Apr 28 | TBA  | HW6 due. |
 | May 3 | In-class project check-in | |
 | May 5 | In-class project summary presentations | |
 | May 10 | TBA  | |
