@@ -64,13 +64,13 @@ what we're hoping to cover.  Homeworks will be due on the due date by
 | Mar 10 | TLS & TLS record layer | |
 | Mar 15 | Public-key encryption & key transport |  |
 | Mar 17 | RSA | |
-| Mar 22 | Key exchange & Diffie-Hellman | HW3 due. HW4 released (TLS setup) |
-| Mar 24 | Digital signatures |   |
+| Mar 22 | Key exchange & Diffie-Hellman | |
+| Mar 24 | Digital signatures |  HW3 due. |
 | Mar 29 | No lecture (Spring break) |  Enjoy the break and think about the project. |
 | Mar 31 | No lecture (Spring break) | |
-| Apr 5 | In-class project check-in | HW4 due. HW5 (Public-key encryption) released. |
+| Apr 5 | In-class project check-in | HW4 released (TLS setup) |
 | Apr 7 | PKI & authenticated-key exchange | |
-| Apr 12 | Attacks on TLS | |
+| Apr 12 | Attacks on TLS | HW4 due. HW5 (Public-key encryption) released. |
 | Apr 14 | Attacks on TLS 2 | |
 | Apr 19 | GPG | HW5 due. HW6 (TBA) released. |
 | Apr 21 | Random number generation | |
