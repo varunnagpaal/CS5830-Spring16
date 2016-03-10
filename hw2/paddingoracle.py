@@ -27,22 +27,28 @@ class PaddingOracle(object):
             self._msg = os.urandom(msg_len)
         else:
             self._msg = "Top-secret message!!!!"
-
+        self._ciphertext = ''
+        
     def test(self, msg):
         """
         Test whether your attack succceeded or not!
         """
         return msg in [self._msg, self._padded_msg]
 
+    def ciphertext(self):
+        return self.setup()
+    
     def setup(self):
-        padder = padding.PKCS7(ciphers.algorithms.AES.block_size).padder()
-        self._padded_msg = padded_msg = padder.update(self._msg) + padder.finalize()
-        # print padded_msg.encode('hex')
-        iv = os.urandom(self._block_size_bytes)
-        encryptor = ciphers.Cipher(ciphers.algorithms.AES(self._key),
-                                   ciphers.modes.CBC(iv),
-                                   self._backend).encryptor()
-        return iv + encryptor.update(padded_msg) + encryptor.finalize()
+        if not self._ciphertext:
+            padder = padding.PKCS7(ciphers.algorithms.AES.block_size).padder()
+            self._padded_msg = padded_msg = padder.update(self._msg) + padder.finalize()
+            # print padded_msg.encode('hex')
+            iv = os.urandom(self._block_size_bytes)
+            encryptor = ciphers.Cipher(ciphers.algorithms.AES(self._key),
+                                       ciphers.modes.CBC(iv),
+                                       self._backend).encryptor()
+            self._ciphertext = iv + encryptor.update(padded_msg) + encryptor.finalize()
+        return self._ciphertext
 
     @property
     def block_length(self):
