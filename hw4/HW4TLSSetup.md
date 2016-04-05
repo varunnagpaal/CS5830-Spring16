@@ -11,9 +11,9 @@ For this assignment, first, you have to obtain a public domain. If you already h
 ```bash
 $ openssl req -newkey rsa:2048 -nodes -keyout domain.key -out domain.csr
 ```
-After you have generated the key pair, the public key has to be signed by a CA. If **you have a registered top level domain (TLD)** such as example.com or www.example.org (not ristenpart.cornell.edu, which is not a TLD, cornell.edu is the top level), then you can obtain a free signed certificafte from the following two websites: 
-        >1: https://letsencrypt.org/
-        >2: https://www.startssl.com/
+After you have generated the key pair, the public key has to be signed by a CA. If **you have a registered top level domain (TLD)** such as example.com or www.example.org (not ristenpart.cornell.edu, which is not a TLD, cornell.edu is the top level), then you can obtain a free signed certificafte from the following two websites:   
+>1: https://letsencrypt.org/  
+>2: https://www.startssl.com/
 
 You can obviously use other sites, if you want to. Follow the procedure given in the web-sites to obtain the certificate.  Often these sites ask for a certificate signing request token or CSR token, which is the file named `domain.csr` in the previous command. 
 
@@ -24,9 +24,10 @@ Now you have all the parts required to start a TLS connection, what is missing i
 You can test the quality of your TLS connection using online tools, such as [Quality SSL Labs][tlstest].  We shall also use this site to test your servers. 
  
 ### Deliverable
-This is “another” lightweight assignment. You need to submit a text file with the following--
-        >1.  the url for your domain,  and the CA you used (write *self-signed* if you are using a self-signed certificate,  
-        >2. brief  description of your experience of setting up a server with TLS.  
+This is “another” lightweight assignment. You need to submit a text file with the following--  
+
+>1. the url for your domain,  and the CA you used (write *self-signed* if you are using a self-signed certificate,  
+>2. brief description of your experience of setting up a server with TLS.  
 
 
 ### Extra Resources
