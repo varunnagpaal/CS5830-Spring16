@@ -26,7 +26,7 @@ You can test the quality of your TLS connection using online tools, such as [Qua
 ### Deliverable
 This is “another” lightweight assignment. You need to submit a text file with the following--  
 
->1. the url for your domain,  and the CA you used (write *self-signed* if you are using a self-signed certificate,  
+>1. the url fof your domain,  and the CA you used (write *self-signed* if you are using a self-signed certificate),  
 >2. brief description of your experience of setting up a server with TLS.  
 
 
