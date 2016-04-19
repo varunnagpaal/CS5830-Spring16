@@ -72,7 +72,7 @@ what we're hoping to cover.  Homeworks will be due on the due date by
 | Apr 7 | Digital signatures & PKI | |
 | Apr 12 | Hybrid encryption & ElGamal | HW4 due. HW5 (Public-key encryption) released. |
 | Apr 14 | OpenPGP & TextSecure  | |
-| Apr 19 | Class canceled (emergency) |  |
+| Apr 19 | Class cancelled |  |
 | Apr 21 | In-class HW5 spec writing | |
 | Apr 26 | Guest lecture (Vitaly Shmatikov) | |
 | Apr 28 | RNGs  | |
