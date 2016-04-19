@@ -69,14 +69,14 @@ what we're hoping to cover.  Homeworks will be due on the due date by
 | Mar 29 | No lecture (Spring break) |  Enjoy the break and think about the project. |
 | Mar 31 | No lecture (Spring break) | |
 | Apr 5 | Digital signatures & PKI | HW4 released (TLS setup) |
-| Apr 7 | Attacks on TLS | |
-| Apr 12 | In-class project check-in  | HW4 due. HW5 (Public-key encryption) released. |
-| Apr 14 | Attacks on TLS 2 | |
-| Apr 19 | GPG | HW5 due. HW6 (TBA) released. |
-| Apr 21 | Random number generation | |
-| Apr 26 | Crypto backdoors | |
-| Apr 28 | TBA  | HW6 due. |
-| May 3 | In-class project check-in | |
+| Apr 7 | Digital signatures & PKI | |
+| Apr 12 | Hybrid encryption & ElGamal | HW4 due. HW5 (Public-key encryption) released. |
+| Apr 14 | OpenPGP & TextSecure  | |
+| Apr 19 | Class canceled (emergency) |  |
+| Apr 21 | In-class HW5 spec writing | |
+| Apr 26 | Guest lecture (Vitaly Shmatikov) | |
+| Apr 28 | RNGs  | |
+| May 3 | Cryptographic backdoors | |
 | May 5 | In-class project summary presentations | |
 | May 10 | TBA  | |
 
