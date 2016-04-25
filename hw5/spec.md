@@ -1,7 +1,7 @@
 ## Specification of Fernet2
 ```(By Rahul Chatterjee (rahul@cs.cornell.edu)```
 
-Fernet2 is an asymmetric authenticated encryption scheme, also called
+Fernet2 is an symmetric-key authenticated encryption scheme, also called
 authenticated encryption with associated date (AEAD). 
 
 
