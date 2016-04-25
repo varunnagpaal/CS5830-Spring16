@@ -49,7 +49,7 @@ The  `decrypt`   function  raises  `InvalidToken`  exception   if  the
 decryption fails.  Any change  in ciphertext  or associated  data will
 result in `InvalidToken` exception.
 
-((Rest of the details you can find in (Fernet Spec)[https://github.com/fernet/spec/blob/master/Spec.md]))
+(Rest of the details you can find in [Fernet Spec](https://github.com/fernet/spec/blob/master/Spec.md))
 
 
 
