@@ -1,4 +1,5 @@
-﻿# Public-key encryption
+# Public-key encryption
+<script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
 ```json
 Deadline: 23:59:59, May 11, 2016 (Last day of classes)
 ```
@@ -6,9 +7,9 @@ We want to build an application layer public key encryption scheme that will all
 
 
 ### Functionality
-We expect following basic functionalities from `PKFernet`. 
-1. The scheme allows users to `encrypt` and `decrypt` messages. The `encryption` routine should first sign the message using the sender’s secret key for signing, and then encrypt the signed message using the public key for encryption of the recipient. The recipient should be able `decrypt` and verify the message using his private key for encryption and public for signing of the sender respectively.
-2. `PKFernet` should be cryptographically agile, i.e., it should be able to adapt to new cryptographic primitives. Users might choose to use different cryptographic primitives, and may or may not choose to be backward compatible. But the scheme should gracefully handle (process or reject) different versions of ciphertexts.
+We expect following basic functionalities from `PKFernet`.  
+1.  The scheme allows users to `encrypt` and `decrypt` messages. The `encryption` routine should first sign the message using the sender’s secret key for signing, and then encrypt the signed message using the public key for encryption of the recipient. The recipient should be able `decrypt` and verify the message using his private key for encryption and public for signing of the sender respectively.  
+2.  `PKFernet` should be cryptographically agile, i.e., it should be able to adapt to new cryptographic primitives. Users might choose to use different cryptographic primitives, and may or may not choose to be backward compatible. But the scheme should gracefully handle (process or reject) different versions of ciphertexts.
 
 
 ### Specification?
