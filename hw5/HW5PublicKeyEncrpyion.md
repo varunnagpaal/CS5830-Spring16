@@ -18,7 +18,14 @@ As this encryption scheme explicitly attempts to enable a global communication o
 
 The final implementations will be cross-tested, that is an encrypted message from one group will be decrypted using another group’s implementation.  I shall set up another shared Google spreadsheet for sample plaintext-ciphertexts pairs from each group.
 
-
+### Points breakup
+Here is the (high-level) point breakup for the HW5:
+*  Earn 30 points for participating in the group discussion on coming up with the detailed specification for the encryption scheme and message format, and writing tests for your implementation.
+*  You will fetch negative points for violating specifications that we decide collectively.
+*  You will get 50 points for implementing the scheme that works with at least itself--it should pass the basic functionality tests.
+*  Finally, 20 points will awareded if the  scheme works with at least two other groups (including `rahul`).
+ 
+*  **Extra credit:** 10 points for supporting each additional cryptographic primitives capped at 50 points. For example, Encryption (key exchage part) if you can handle ECC based DH, Number field based DH, and RSA, you will get 20 extra points. If you support all of ECDSA, DSA, and RSA-based signature schemes, that will fetch you 20 extra. If you can support different ECC curves (only the ones supported by cryptography.io), and different hashing algorithms, you will earn 10 more marks. 
 
 ### Shared documents
 * [Specification doc](https://docs.google.com/document/d/1kyvwWRUt2RAXPuA_CyFqFkeAdzAi1gdOWHOJB4eBjFw/edit)  
